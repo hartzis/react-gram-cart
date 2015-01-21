@@ -2,14 +2,21 @@ define(
     [
         'lib/react',
         'js/Dispatcher',
-        'js/CartComponent',
-        'js/Grams'
+        'js/app/CartComponent',
+        'js/app/Grams'
     ],
     function(
         React,
-        Dispatcher
+        Dispatcher,
+        CartComponent,
+        Grams
     ) {
         var AppComponent = React.createClass({displayName: "AppComponent",
+
+            getInitialState: function() {
+                return {cartItems:[]};
+            },
+
             componentWillMount: function() {
                 // dispatcher listeners here
             },
