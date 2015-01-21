@@ -12,7 +12,7 @@ define(
             this.view = view;
 
             // setup listeners
-            Dispatcher.onDataChange('AppComponent.cartItems.add', this.addCartItem.bind(this));
+            Dispatcher.onDataChange('AppComponent.cartItems.addOrRemove', this.addOrRemoveCartItem.bind(this));
 
         }
 
@@ -71,24 +71,24 @@ define(
 
             },
 
-            addCartItem: function(data) {
+            addOrRemoveCartItem: function(data) {
 
                 var item = data.item;
 
-                console.log('item selected-', data.item, 'this-', this);
+                // console.log('item clicked-', data.item);
 
                 var state = this.view.state;
 
-                var cartContainsArray = state.cartItems.map(function(cartItem) {
+                var cartContainsArray = state.cartItems.filter(function(cartItem) {
                     return cartItem.link === item.link;
                 });
 
-                var alreadyInCart = cartContainsArray.length !== 0 ? cartContainsArray.reduce(function(a,b) {return a || b;}) : false;
+                var alreadyInCart = cartContainsArray.length > 0;
 
                 if(alreadyInCart) {
                     // remove from cart
-                    console.log('remove?!', item);
-                    return false;      
+                    state.cartItems.splice(state.cartItems.indexOf(cartContainsArray[0], 1));
+                    return this.view.setState(state);
                 } else {
                     // add to cart
                     state.cartItems.push(item);

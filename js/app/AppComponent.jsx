@@ -44,7 +44,7 @@ define(
                                 <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
                                 <form className="form-inline">
                                     <div className="form-group">
-                                        <input type="text" className="form-control" id="searchQuery" placeholder="ugly cows" ref="gramQuery" />
+                                        <input type="text" className="form-control" id="searchQuery" placeholder="cows" ref="gramQuery" />
                                     </div>
                                     <button type="button" className="btn btn-default" onClick={this.getGrams}>Do the thing!</button>
                                 </form>

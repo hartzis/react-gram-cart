@@ -44,7 +44,7 @@ define(
                                 React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for picutures by query"), 
                                 React.createElement("form", {className: "form-inline"}, 
                                     React.createElement("div", {className: "form-group"}, 
-                                        React.createElement("input", {type: "text", className: "form-control", id: "searchQuery", placeholder: "ugly cows", ref: "gramQuery"})
+                                        React.createElement("input", {type: "text", className: "form-control", id: "searchQuery", placeholder: "cows", ref: "gramQuery"})
                                     ), 
                                     React.createElement("button", {type: "button", className: "btn btn-default", onClick: this.getGrams}, "Do the thing!")
                                 )

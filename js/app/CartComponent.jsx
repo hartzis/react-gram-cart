@@ -36,7 +36,7 @@ define(
                                     });
                                     return (
                                         <div className="col-xs-12 col-sm-4" key={item.link}>
-                                            <div className={classes} onClick={this.select.bind(this, item)}>
+                                            <div className={classes} onClick={this.remove.bind(this, item)}>
                                                 <img src={item.media.m} />
                                             </div>
                                         </div>
@@ -47,8 +47,9 @@ define(
                 )
             },
 
-            select: function(item) {
-                console.log('remove-', item);
+            remove: function(item) {
+                // console.log('remove-', item);
+                Dispatcher.dataChange('AppComponent.cartItems.addOrRemove', {item:item});
             }
         });
 

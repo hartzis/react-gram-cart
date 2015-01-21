@@ -49,7 +49,7 @@ define(
             select: function(item, event) {
                 // debugger;
 
-                Dispatcher.dataChange('AppComponent.cartItems.add', {item: item});
+                Dispatcher.dataChange('AppComponent.cartItems.addOrRemove', {item:item});
 
             },
 
