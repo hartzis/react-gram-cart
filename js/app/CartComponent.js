@@ -7,13 +7,13 @@ define(
         React,
         Dispatcher
     ) {
+
+        var cx = React.addons.classSet;
+
         var CartComponent = React.createClass({displayName: "CartComponent",
 
             getIntialState: function() {
-                var state = {
-                    cartItems: this.props.cartItems
-                }
-                return state;
+
             },
 
             componentWillMount: function() {
@@ -27,11 +27,28 @@ define(
             render: function() {
                 return (
                     React.createElement("div", {className: "row"}, 
-                        React.createElement("div", {className: "col-xs-12 text-center"}
-
+                        React.createElement("div", {className: "col-xs-12 text-center well"}, 
+                            React.createElement("h5", null, "-klart-"), 
+                            this.props.cartItems.map(function(item) {
+                                    var classes = cx({
+                                        'panel': true,
+                                        'panel-primary': true
+                                    });
+                                    return (
+                                        React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
+                                            React.createElement("div", {className: classes, onClick: this.select.bind(this, item)}, 
+                                                React.createElement("img", {src: item.media.m})
+                                            )
+                                        )
+                                    )
+                                }.bind(this))
                         )
                     )
                 )
+            },
+
+            select: function(item) {
+                console.log('remove-', item);
             }
         });
 
