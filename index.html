@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React-A-Gram Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+
+<body>
+    <section id="myApp"></section>
+
+    <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="lib/require.js"></script>
+    <script type="text/javascript">
+        require(
+            [
+                'lib/react',
+                'js/AppComponent'
+            ],
+            function( React, AppComponent ) {
+                React.render(
+                    React.createElement(
+                        AppComponent,
+                        {
+                            // properties
+                        }
+                    ),
+                    document.getElementById( 'myApp' )
+                )
+            }
+        )
+    </script>
+</body>
+
+</html>

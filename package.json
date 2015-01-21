@@ -1,0 +1,19 @@
+{
+  "name": "react-gram-cart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hartzis/react-gram-cart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hartzis/react-gram-cart/issues"
+  },
+  "homepage": "https://github.com/hartzis/react-gram-cart"
+}
