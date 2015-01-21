@@ -1,8 +1,10 @@
 define(
     [
+        'lib/jquery',
         'js/Dispatcher'
     ],
     function(
+        JQuery,
         Dispatcher
     ) {
         
@@ -10,51 +12,57 @@ define(
             this.view = view;
 
             // setup listeners
-            Dispatcher.onDataChange('get.grams.with.query', this.getGramsByQuery);
+            
         }
 
         AppController.prototype = {
 
-            getJSON: function(url, callback) {
-                var request = new XMLHttpRequest();
-                request.open('GET', url, true);
+            // getJSON: function(url, callback) {
+            //     var request = new XMLHttpRequest();
+            //     request.open('GET', url, true);
 
-                request.onload = function() {
-                    if (request.status >= 200 && request.status < 400) {
-                        // Success!
-                        var data = JSON.parse(request.responseText);
+            //     request.onload = function() {
+            //         if (request.status >= 200 && request.status < 400) {
+            //             // Success!
+            //             var data = JSON.parse(request.responseText);
 
-                        callback(data);
+            //             callback(data);
 
-                    } else {
-                        // We reached our target server, but it returned an error
-                        console.log('it brokeded');
-                    }
-                };
+            //         } else {
+            //             // We reached our target server, but it returned an error
+            //             console.log('it brokeded');
+            //         }
+            //     };
 
-                request.onerror = function() {
-                    // There was a connection error of some sort
-                    console.log('it brokeded');
-                };
+            //     request.onerror = function() {
+            //         // There was a connection error of some sort
+            //         console.log('it brokeded');
+            //     };
 
-                request.send();
-            },
+            //     request.send();
+            // },
 
-            getGramsByQuery: function(data) {
+            getGramsByQuery: function(query) {
+
+                var view = this.view;
 
                 // i realize now that i thought i was going to use instagram but i am now using flickr
 
-                // var flickrURL = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+                var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+                    $.getJSON( flickerAPI, {
+                        tags: query,
+                        tagmode: "any",
+                        format: "json"
+                    })
+                    .done(function( data ) {
+                        console.log('data-', data);
 
-                // tags: "mount rainier",
-                // tagmode: "any",
-                // format: "json"
+                        var items = data.items;
 
-                // flickrURL = flickrURL + "&tagmode=any&"
+                        view.setState({cartItems:items});
 
-                console.log('ajax this query-', data.query)
+                    });
 
-                // this.getJSON()
 
             }
 

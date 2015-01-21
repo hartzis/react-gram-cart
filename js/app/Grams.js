@@ -19,8 +19,14 @@ define(
             render: function() {
                 return (
                     React.createElement("div", {className: "row"}, 
-                        React.createElement("div", {className: "col-xs-12 text-center"}
-
+                        React.createElement("div", {className: "col-xs-12 text-center"}, 
+                            this.props.cartItems.map(function(item) {
+                                return (
+                                    React.createElement("div", {className: "panel", key: item.link}, 
+                                        React.createElement("img", {src: item.media.m})
+                                    )
+                                )
+                            })
                         )
                     )
                 )

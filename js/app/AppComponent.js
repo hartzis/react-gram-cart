@@ -40,7 +40,7 @@ define(
                         React.createElement("div", {className: "row"}, 
                             React.createElement("div", {className: "col-xs-12 text-center"}, 
                                 React.createElement("h1", null, "React-A-Gram Cart"), 
-                                React.createElement("h5", null, "Search instagram for picutures by query"), 
+                                React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for picutures by query"), 
                                 React.createElement("form", {className: "form-inline"}, 
                                     React.createElement("div", {className: "form-group"}, 
                                         React.createElement("input", {type: "text", className: "form-control", id: "searchQuery", placeholder: "ugly cows", ref: "gramQuery"})
@@ -59,7 +59,7 @@ define(
 
                 var query = this.refs.gramQuery.getDOMNode().value;
 
-                Dispatcher.dataChange('get.grams.with.query', {query:query});
+                this.controller.getGramsByQuery(query);
             }
 
         });

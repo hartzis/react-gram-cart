@@ -40,7 +40,7 @@ define(
                         <div className="row">
                             <div className="col-xs-12 text-center">
                                 <h1>React-A-Gram Cart</h1>
-                                <h5>Search instagram for picutures by query</h5>
+                                <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
                                 <form className="form-inline">
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="searchQuery" placeholder="ugly cows" ref="gramQuery" />
@@ -59,7 +59,7 @@ define(
 
                 var query = this.refs.gramQuery.getDOMNode().value;
 
-                Dispatcher.dataChange('get.grams.with.query', {query:query});
+                this.controller.getGramsByQuery(query);
             }
 
         });

@@ -20,7 +20,13 @@ define(
                 return (
                     <div className="row">
                         <div className="col-xs-12 text-center">
-
+                            {this.props.cartItems.map(function(item) {
+                                return (
+                                    <div className="panel" key={item.link}>
+                                        <img src={item.media.m} />
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 )
