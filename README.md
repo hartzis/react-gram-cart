@@ -3,5 +3,5 @@
 ### watch/build jsx
 `npm run watch`
 
-### run jest tests for react
+### run tests (not working yet)
 `npm test`
