@@ -12,7 +12,7 @@ define(
             this.view = view;
 
             // setup listeners
-            Dispatcher.onDataChange('AppComponent.cartItems.add', this.addCartItem);
+            Dispatcher.onDataChange('AppComponent.cartItems.add', this.addCartItem.bind(this));
 
         }
 
@@ -64,26 +64,36 @@ define(
 
                         state.gramItems = items;
 
-                        view.setState(state);
+                        return view.setState(state);
 
                     });
 
 
             },
 
-            addCartItem: function(link) {
-                console.log('item selected-', link);
-                // var state = this.view.state;
+            addCartItem: function(data) {
 
-                // var cartContainsArray = this.props.cartItems.map(function(cartItem) {
-                //     return cartItem.link === item.link;
-                // });
+                var item = data.item;
 
-                // var alreadyInCart = cartContainsArray.length !== 0 ? cartContainsArray.reduce(function(a,b) {return a || b;}) : false;
+                console.log('item selected-', data.item, 'this-', this);
 
-                // if(alreadyInCart) {
-                    
-                // }
+                var state = this.view.state;
+
+                var cartContainsArray = state.cartItems.map(function(cartItem) {
+                    return cartItem.link === item.link;
+                });
+
+                var alreadyInCart = cartContainsArray.length !== 0 ? cartContainsArray.reduce(function(a,b) {return a || b;}) : false;
+
+                if(alreadyInCart) {
+                    // remove from cart
+                    console.log('remove?!', item);
+                    return false;      
+                } else {
+                    // add to cart
+                    state.cartItems.push(item);
+                    return this.view.setState(state);
+                }
 
             }
 
