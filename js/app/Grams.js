@@ -18,7 +18,11 @@ define(
 
             render: function() {
                 return (
-                    React.createElement("div", null, "yup2")
+                    React.createElement("div", {className: "row"}, 
+                        React.createElement("div", {className: "col-xs-12 text-center"}
+
+                        )
+                    )
                 )
             }
         });

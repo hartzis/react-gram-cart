@@ -18,7 +18,11 @@ define(
 
             render: function() {
                 return (
-                    <div>yup2</div>
+                    <div className="row">
+                        <div className="col-xs-12 text-center">
+
+                        </div>
+                    </div>
                 )
             }
         });

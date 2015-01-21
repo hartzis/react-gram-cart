@@ -8,6 +8,14 @@ define(
         Dispatcher
     ) {
         var CartComponent = React.createClass({displayName: "CartComponent",
+
+            getIntialState: function() {
+                var state = {
+                    cartItems: this.props.cartItems
+                }
+                return state;
+            },
+
             componentWillMount: function() {
                 // dispatcher listeners here
             },
@@ -18,7 +26,11 @@ define(
 
             render: function() {
                 return (
-                    <div>yup</div>
+                    <div className="row">
+                        <div className="col-xs-12 text-center">
+
+                        </div>
+                    </div>
                 )
             }
         });
