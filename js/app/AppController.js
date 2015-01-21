@@ -12,7 +12,8 @@ define(
             this.view = view;
 
             // setup listeners
-            
+            Dispatcher.onDataChange('AppComponent.cartItems.add', this.addCartItem);
+
         }
 
         AppController.prototype = {
@@ -64,6 +65,10 @@ define(
                     });
 
 
+            },
+
+            addCartItem: function(link) {
+                console.log('item selected-', link);
             }
 
         }
