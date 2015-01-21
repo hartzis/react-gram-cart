@@ -25,11 +25,12 @@ define(
                     React.createElement("div", {className: "row"}, 
                         React.createElement("div", {className: "col-xs-12 text-center"}, 
                             React.createElement("div", {className: "row"}, 
-                                this.props.cartItems.map(function(item) {
+                                this.props.gramItems.map(function(item) {
+                                    var isSelected = this.isSelected(item);
                                     var classes = cx({
                                         'panel': true,
-                                        'panel-primary': item.isSelected,
-                                        'panel-info': !this.isSelected
+                                        'panel-primary': isSelected,
+                                        'panel-info': !isSelected
                                     });
                                     return (
                                         React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
@@ -48,7 +49,16 @@ define(
             select: function(item, event) {
                 // debugger;
 
-                Dispatcher.dataChange('AppComponent.cartItems.add', {link: item.link});
+                Dispatcher.dataChange('AppComponent.cartItems.add', {item: item});
+
+            },
+
+            isSelected: function(item) {
+                var selectedArray = this.props.cartItems.map(function(cartItem) {
+                    return cartItem.link === item.link;
+                })
+
+                return selectedArray.length !== 0 ? selectedArray.reduce(function(a,b) {return a || b;}) : false;
 
             }
         });

@@ -17,7 +17,8 @@ define(
 
             getInitialState: function() {
                 var state = {
-                    cartItems:[]
+                    cartItems:[],
+                    gramItems:[]
                 }
 
                 return state;
@@ -50,7 +51,7 @@ define(
                             )
                         ), 
                         React.createElement(CartComponent, {cartItems: this.state.cartItems}), 
-                        React.createElement(Grams, {cartItems: this.state.cartItems})
+                        React.createElement(Grams, {gramItems: this.state.gramItems, cartItems: this.state.cartItems})
                     )
                 );
             },

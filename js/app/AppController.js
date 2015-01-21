@@ -47,6 +47,8 @@ define(
 
                 var view = this.view;
 
+                var state = this.view.state;
+
                 // i realize now that i thought i was going to use instagram but i am now using flickr
 
                 var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
@@ -60,7 +62,9 @@ define(
 
                         var items = data.items;
 
-                        view.setState({cartItems:items});
+                        state.gramItems = items;
+
+                        view.setState(state);
 
                     });
 
@@ -69,6 +73,18 @@ define(
 
             addCartItem: function(link) {
                 console.log('item selected-', link);
+                // var state = this.view.state;
+
+                // var cartContainsArray = this.props.cartItems.map(function(cartItem) {
+                //     return cartItem.link === item.link;
+                // });
+
+                // var alreadyInCart = cartContainsArray.length !== 0 ? cartContainsArray.reduce(function(a,b) {return a || b;}) : false;
+
+                // if(alreadyInCart) {
+                    
+                // }
+
             }
 
         }
