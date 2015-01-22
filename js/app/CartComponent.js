@@ -37,7 +37,7 @@ define(
                                     return (
                                         React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
                                             React.createElement("div", {className: classes, onClick: this.remove.bind(this, item)}, 
-                                                React.createElement("img", {src: item.media.m})
+                                                React.createElement("img", {className: "gram", src: item.media.m})
                                             )
                                         )
                                     )

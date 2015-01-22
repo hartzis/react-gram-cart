@@ -25,22 +25,24 @@ define(
                     <div className="row">
                         <div className="col-xs-12 text-center">
                             <div className="row">
-                                {this.props.gramItems.map(function(item) {
-                                    var isSelected = this.isSelected(item);
-                                    var classes = cx({
-                                        'panel': true,
-                                        'panel-primary': isSelected,
-                                        'panel-info': !isSelected
-                                    });
-                                    return (
-                                        <div className="col-xs-12 col-sm-4" key={item.link}>
-                                            <div className={classes} onClick={this.select.bind(this, item)}>
-                                                <img src={item.media.m} />
-                                            </div>
-                                        </div>
-                                    )
-                                }.bind(this))}
+                                {this.props.gramItems.map(this.renderGram)}
                             </div>
+                        </div>
+                    </div>
+                )
+            },
+
+            renderGram: function(gram) {
+                var isSelected = this.isSelected(gram);
+                var classes = cx({
+                    'panel': true,
+                    'panel-primary': isSelected,
+                    'panel-info': !isSelected
+                });
+                return (
+                    <div className="col-xs-12 col-sm-4" key={gram.link}>
+                        <div className={classes} onClick={this.select.bind(this, gram)}>
+                            <img className="gram" src={gram.media.m} />
                         </div>
                     </div>
                 )

@@ -25,22 +25,24 @@ define(
                     React.createElement("div", {className: "row"}, 
                         React.createElement("div", {className: "col-xs-12 text-center"}, 
                             React.createElement("div", {className: "row"}, 
-                                this.props.gramItems.map(function(item) {
-                                    var isSelected = this.isSelected(item);
-                                    var classes = cx({
-                                        'panel': true,
-                                        'panel-primary': isSelected,
-                                        'panel-info': !isSelected
-                                    });
-                                    return (
-                                        React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
-                                            React.createElement("div", {className: classes, onClick: this.select.bind(this, item)}, 
-                                                React.createElement("img", {src: item.media.m})
-                                            )
-                                        )
-                                    )
-                                }.bind(this))
+                                this.props.gramItems.map(this.renderGram)
                             )
+                        )
+                    )
+                )
+            },
+
+            renderGram: function(gram) {
+                var isSelected = this.isSelected(gram);
+                var classes = cx({
+                    'panel': true,
+                    'panel-primary': isSelected,
+                    'panel-info': !isSelected
+                });
+                return (
+                    React.createElement("div", {className: "col-xs-12 col-sm-4", key: gram.link}, 
+                        React.createElement("div", {className: classes, onClick: this.select.bind(this, gram)}, 
+                            React.createElement("img", {className: "gram", src: gram.media.m})
                         )
                     )
                 )

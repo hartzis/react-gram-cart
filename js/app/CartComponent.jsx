@@ -37,7 +37,7 @@ define(
                                     return (
                                         <div className="col-xs-12 col-sm-4" key={item.link}>
                                             <div className={classes} onClick={this.remove.bind(this, item)}>
-                                                <img src={item.media.m} />
+                                                <img className="gram" src={item.media.m} />
                                             </div>
                                         </div>
                                     )
