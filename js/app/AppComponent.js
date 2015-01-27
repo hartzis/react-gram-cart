@@ -42,11 +42,11 @@ define(
                             React.createElement("div", {className: "col-xs-12 text-center"}, 
                                 React.createElement("h1", null, "React-A-Gram Cart"), 
                                 React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for picutures by query"), 
-                                React.createElement("form", {className: "form-inline"}, 
+                                React.createElement("form", {className: "form-inline", onSubmit: this.getGrams}, 
                                     React.createElement("div", {className: "form-group"}, 
                                         React.createElement("input", {type: "text", className: "form-control", id: "searchQuery", placeholder: "cows", ref: "gramQuery"})
                                     ), 
-                                    React.createElement("button", {type: "button", className: "btn btn-default", onClick: this.getGrams}, "Do the thing!")
+                                    React.createElement("button", {type: "submit", className: "btn btn-default", onClick: this.getGrams}, "Do the thing!")
                                 )
                             )
                         ), 
@@ -56,11 +56,13 @@ define(
                 );
             },
 
-            getGrams: function() {
+            getGrams: function(e) {
 
                 var query = this.refs.gramQuery.getDOMNode().value;
 
                 this.controller.getGramsByQuery(query);
+
+                e.preventDefault();
             }
 
         });

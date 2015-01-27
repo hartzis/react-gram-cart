@@ -1,10 +1,9 @@
 define(
     [
-        'lib/jquery',
-        'js/Dispatcher'
+        'js/Dispatcher',
+        'lib/jquery'
     ],
     function(
-        JQuery,
         Dispatcher
     ) {
         
@@ -87,7 +86,7 @@ define(
 
                 if(alreadyInCart) {
                     // remove from cart
-                    state.cartItems.splice(state.cartItems.indexOf(cartContainsArray[0], 1));
+                    state.cartItems.splice(state.cartItems.indexOf(cartContainsArray[0]), 1);
                     return this.view.setState(state);
                 } else {
                     // add to cart

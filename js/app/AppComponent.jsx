@@ -42,11 +42,11 @@ define(
                             <div className="col-xs-12 text-center">
                                 <h1>React-A-Gram Cart</h1>
                                 <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
-                                <form className="form-inline">
+                                <form className="form-inline" onSubmit={this.getGrams}>
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="searchQuery" placeholder="cows" ref="gramQuery" />
                                     </div>
-                                    <button type="button" className="btn btn-default" onClick={this.getGrams}>Do the thing!</button>
+                                    <button type="submit" className="btn btn-default" onClick={this.getGrams}>Do the thing!</button>
                                 </form>
                             </div>
                         </div>
@@ -56,11 +56,13 @@ define(
                 );
             },
 
-            getGrams: function() {
+            getGrams: function(e) {
 
                 var query = this.refs.gramQuery.getDOMNode().value;
 
                 this.controller.getGramsByQuery(query);
+
+                e.preventDefault();
             }
 
         });
