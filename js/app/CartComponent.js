@@ -12,8 +12,10 @@ define(
 
         var CartComponent = React.createClass({displayName: "CartComponent",
 
-            getIntialState: function() {
-
+            getInitialState: function() {
+                return {
+                    show: false
+                }
             },
 
             componentWillMount: function() {
@@ -27,24 +29,40 @@ define(
             render: function() {
                 return (
                     React.createElement("div", {className: "row"}, 
-                        React.createElement("div", {className: "col-xs-12 text-center well"}, 
-                            React.createElement("h5", null, "-klart-"), 
-                            this.props.cartItems.map(function(item) {
-                                    var classes = cx({
-                                        'panel': true,
-                                        'panel-primary': true
-                                    });
-                                    return (
-                                        React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
-                                            React.createElement("div", {className: classes, onClick: this.remove.bind(this, item)}, 
-                                                React.createElement("img", {className: "gram", src: item.media.m})
+                        React.createElement("div", {className: "col-xs-12"}, 
+                            React.createElement("div", {className: "row"}, 
+                                React.createElement("div", {className: cx({'col-xs-12': true, 'text-center': true, 'well': true, 'hidden': !this.state.show})}, 
+                                    React.createElement("h5", null, "-klart-"), 
+                                    this.props.cartItems.map(function(item) {
+                                            var classes = cx({
+                                                'panel': true,
+                                                'panel-primary': true
+                                            });
+                                            return (
+                                                React.createElement("div", {className: "col-xs-12 col-sm-4", key: item.link}, 
+                                                    React.createElement("div", {className: classes, onClick: this.remove.bind(this, item)}, 
+                                                        React.createElement("img", {className: "gram", src: item.media.m})
+                                                    )
+                                                )
                                             )
-                                        )
+                                        }.bind(this))
+                                )
+                            ), 
+                            React.createElement("div", {className: "row"}, 
+                                React.createElement("div", {className: "col-xs-12 text-center"}, 
+                                    React.createElement("hr", null), 
+                                    React.createElement("button", {className: "btn btn-primary", onClick: this.showCart}, 
+                                        this.state.show ? 'Hide' : 'Show', " klart"
                                     )
-                                }.bind(this))
+                                )
+                            )
                         )
                     )
                 )
+            },
+
+            showCart: function() {
+                this.setState({show: !this.state.show});
             },
 
             remove: function(item) {

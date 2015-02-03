@@ -12,8 +12,10 @@ define(
 
         var CartComponent = React.createClass({displayName: "CartComponent",
 
-            getIntialState: function() {
-
+            getInitialState: function() {
+                return {
+                    show: false
+                }
             },
 
             componentWillMount: function() {
@@ -27,24 +29,40 @@ define(
             render: function() {
                 return (
                     <div className="row">
-                        <div className="col-xs-12 text-center well">
-                            <h5>-klart-</h5>
-                            {this.props.cartItems.map(function(item) {
-                                    var classes = cx({
-                                        'panel': true,
-                                        'panel-primary': true
-                                    });
-                                    return (
-                                        <div className="col-xs-12 col-sm-4" key={item.link}>
-                                            <div className={classes} onClick={this.remove.bind(this, item)}>
-                                                <img className="gram" src={item.media.m} />
-                                            </div>
-                                        </div>
-                                    )
-                                }.bind(this))}
+                        <div className="col-xs-12">
+                            <div className="row">
+                                <div className={cx({'col-xs-12': true, 'text-center': true, 'well': true, 'hidden': !this.state.show})}>
+                                    <h5>-klart-</h5>
+                                    {this.props.cartItems.map(function(item) {
+                                            var classes = cx({
+                                                'panel': true,
+                                                'panel-primary': true
+                                            });
+                                            return (
+                                                <div className="col-xs-12 col-sm-4" key={item.link}>
+                                                    <div className={classes} onClick={this.remove.bind(this, item)}>
+                                                        <img className="gram" src={item.media.m} />
+                                                    </div>
+                                                </div>
+                                            )
+                                        }.bind(this))}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-xs-12 text-center">
+                                    <hr></hr>
+                                    <button className="btn btn-primary" onClick={this.showCart}>
+                                        {this.state.show ? 'Hide' : 'Show'} klart
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
+            },
+
+            showCart: function() {
+                this.setState({show: !this.state.show});
             },
 
             remove: function(item) {
