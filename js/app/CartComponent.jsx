@@ -52,7 +52,7 @@ define(
                                 <div className="col-xs-12 text-center">
                                     <hr></hr>
                                     <button className="btn btn-primary" onClick={this.showCart}>
-                                        {this.state.show ? 'Hide' : 'Show'} klart
+                                        {this.state.show ? 'Hide' : 'Show'} klart ({this.props.cartItems.length})
                                     </button>
                                 </div>
                             </div>

@@ -52,7 +52,7 @@ define(
                                 React.createElement("div", {className: "col-xs-12 text-center"}, 
                                     React.createElement("hr", null), 
                                     React.createElement("button", {className: "btn btn-primary", onClick: this.showCart}, 
-                                        this.state.show ? 'Hide' : 'Show', " klart"
+                                        this.state.show ? 'Hide' : 'Show', " klart (", this.props.cartItems.length, ")"
                                     )
                                 )
                             )
