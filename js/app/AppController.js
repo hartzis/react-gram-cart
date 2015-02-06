@@ -67,6 +67,13 @@ define(
 
                     });
 
+                    // // Vanilla
+                    // function success(data) {
+                    //   // code
+                    // }
+                    // var scr = document.createElement('script')
+                    // scr.src = '//openexchangerates.org/latest.json?callback=formatCurrency'
+                    // document.body.appendChild(scr)
 
             },
 
