@@ -86,9 +86,9 @@ define(
 
                 // console.log('item clicked-', data.item);
 
-                var state = this.view.state;
+                var copyOfCurrentCart = this.view.state.cartItems.slice(0);
 
-                var cartContainsArray = state.cartItems.filter(function(cartItem) {
+                var cartContainsArray = copyOfCurrentCart.filter(function(cartItem) {
                     return cartItem.link === item.link;
                 });
 
@@ -96,12 +96,12 @@ define(
 
                 if(alreadyInCart) {
                     // remove from cart
-                    state.cartItems.splice(state.cartItems.indexOf(cartContainsArray[0]), 1);
-                    return this.view.setState(state);
+                    copyOfCurrentCart.splice(copyOfCurrentCart.indexOf(cartContainsArray[0]), 1);
+                    return this.view.setState( {cartItems: copyOfCurrentCart} );
                 } else {
                     // add to cart
-                    state.cartItems.push(item);
-                    return this.view.setState(state);
+                    copyOfCurrentCart.push(item);
+                    return this.view.setState( {cartItems: copyOfCurrentCart} );
                 }
 
             }
