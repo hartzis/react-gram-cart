@@ -1,7 +1,6 @@
 define(
     [
-        'js/Dispatcher',
-        'lib/jquery'
+        'js/Dispatcher'
     ],
     function(
         Dispatcher
