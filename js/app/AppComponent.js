@@ -57,12 +57,11 @@ define(
             },
 
             getGrams: function(e) {
-
+                e.preventDefault();
+                
                 var query = this.refs.gramQuery.getDOMNode().value;
 
-                this.controller.getGramsByQuery(query);
-
-                e.preventDefault();
+                this.controller.getGramsByQuery(query);                
             }
 
         });

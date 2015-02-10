@@ -46,34 +46,37 @@ define(
 
                 var view = this.view;
 
-                var state = this.view.state;
-
                 // i realize now that i thought i was going to use instagram but i am now using flickr
+                
+                // setup query
+                var tags = query;
+                var tagmode = "any";
+                var format = "json";
 
-                var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-                    $.getJSON( flickerAPI, {
-                        tags: query,
-                        tagmode: "any",
-                        format: "json"
-                    })
-                    .done(function( data ) {
-                        console.log('data-', data);
+                var query = "tags=" + tags + "&tagmode=" + tagmode + "&format=" + format;
 
-                        var items = data.items;
+                var callback = function ( data ) {
+                    console.log('data-', data);
 
-                        state.gramItems = items;
+                    var gramItems = data.items;
 
-                        return view.setState(state);
+                    // remove from global scope
+                    delete window.jsonFlickrFeed;
 
-                    });
+                    return view.setState( {gramItems: gramItems} );
 
-                    // // Vanilla
-                    // function success(data) {
-                    //   // code
-                    // }
-                    // var scr = document.createElement('script')
-                    // scr.src = '//openexchangerates.org/latest.json?callback=formatCurrency'
-                    // document.body.appendChild(scr)
+                };
+
+                // Vanilla
+                var jsonFlickrFeed = function ( data ) {
+                  callback( data );
+                }
+                // put on global scope temporaralllyyyy
+                window.jsonFlickrFeed = jsonFlickrFeed;
+                var scr = document.createElement('script');
+
+                scr.src = 'http://api.flickr.com/services/feeds/photos_public.gne?callback=jsonFlickrFeed&' + query;
+                document.body.appendChild(scr);
 
             },
 
