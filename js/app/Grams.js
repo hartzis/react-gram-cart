@@ -11,6 +11,12 @@ define(
         var cx = React.addons.classSet;
 
         var Grams = React.createClass({displayName: "Grams",
+
+            propTypes: {
+                gramItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            },
+
             componentWillMount: function() {
                 // dispatcher listeners here
             },

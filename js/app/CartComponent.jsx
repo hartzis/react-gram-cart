@@ -10,7 +10,11 @@ define(
 
         var cx = React.addons.classSet;
 
-        var CartComponent = React.createClass({displayName: "CartComponent",
+        var CartComponent = React.createClass({
+
+            propTypes: {
+                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            },
 
             getInitialState: function() {
                 return {

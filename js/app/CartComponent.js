@@ -12,6 +12,10 @@ define(
 
         var CartComponent = React.createClass({displayName: "CartComponent",
 
+            propTypes: {
+                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            },
+
             getInitialState: function() {
                 return {
                     show: false
