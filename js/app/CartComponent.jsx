@@ -1,7 +1,6 @@
 define(
     [
-        'lib/react',
-        'js/Dispatcher'
+        'lib/react'
     ],
     function(
         React,
@@ -13,7 +12,8 @@ define(
         var CartComponent = React.createClass({
 
             propTypes: {
-                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                onRemove: React.PropTypes.func.isRequired
             },
 
             getInitialState: function() {
@@ -71,7 +71,7 @@ define(
 
             remove: function(item) {
                 // console.log('remove-', item);
-                Dispatcher.dataChange('AppComponent.cartItems.addOrRemove', {item:item});
+                this.props.onRemove(item);
             }
         });
 

@@ -1,14 +1,12 @@
 define(
     [
         'lib/react',
-        'js/Dispatcher',
         'js/app/AppController',
         'js/app/CartComponent',
         'js/app/Grams'
     ],
     function(
         React,
-        Dispatcher,
         AppController,
         CartComponent,
         Grams
@@ -35,6 +33,32 @@ define(
                 // stop listening for htings
             },
 
+            _addOrRemoveCartItem: function(data) {
+
+                var item = data;
+
+                // console.log('item clicked-', data);
+
+                var copyOfCurrentCart = this.state.cartItems.slice(0);
+
+                var cartContainsArray = copyOfCurrentCart.filter(function(cartItem) {
+                    return cartItem.link === item.link;
+                });
+
+                var alreadyInCart = cartContainsArray.length > 0;
+
+                if(alreadyInCart) {
+                    // remove from cart
+                    copyOfCurrentCart.splice(copyOfCurrentCart.indexOf(cartContainsArray[0]), 1);
+                    return this.setState( {cartItems: copyOfCurrentCart} );
+                } else {
+                    // add to cart
+                    copyOfCurrentCart.push(item);
+                    return this.setState( {cartItems: copyOfCurrentCart} );
+                }
+
+            },
+
             render: function() {
                 return (
                     <div className="container">
@@ -50,18 +74,20 @@ define(
                                 </form>
                             </div>
                         </div>
-                        <CartComponent cartItems={this.state.cartItems} />
-                        <Grams gramItems={this.state.gramItems} cartItems={this.state.cartItems} />
+                        <CartComponent cartItems={this.state.cartItems} onRemove={this._addOrRemoveCartItem} />
+                        <Grams gramItems={this.state.gramItems}
+                          cartItems={this.state.cartItems}
+                          onSelect={this._addOrRemoveCartItem}/>
                     </div>
                 );
             },
 
             getGrams: function(e) {
                 e.preventDefault();
-                
+
                 var query = this.refs.gramQuery.getDOMNode().value;
 
-                this.controller.getGramsByQuery(query);                
+                this.controller.getGramsByQuery(query);
             }
 
         });

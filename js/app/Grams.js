@@ -1,11 +1,9 @@
 define(
     [
-        'lib/react',
-        'js/Dispatcher'
+        'lib/react'
     ],
     function(
-        React,
-        Dispatcher
+        React
     ) {
 
         var cx = React.addons.classSet;
@@ -14,7 +12,8 @@ define(
 
             propTypes: {
                 gramItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+                cartItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                onSelect: React.PropTypes.func.isRequired
             },
 
             componentWillMount: function() {
@@ -47,18 +46,15 @@ define(
                 });
                 return (
                     React.createElement("div", {className: "col-xs-12 col-sm-4", key: gram.link}, 
-                        React.createElement("div", {className: classes, onClick: this.select.bind(this, gram)}, 
+                        React.createElement("div", {className: classes, onClick: this._select.bind(this, gram)}, 
                             React.createElement("img", {className: "gram", src: gram.media.m})
                         )
                     )
                 )
             },
 
-            select: function(item, event) {
-                // debugger;
-
-                Dispatcher.dataChange('AppComponent.cartItems.addOrRemove', {item:item});
-
+            _select: function(gram) {
+              this.props.onSelect(gram);
             },
 
             isSelected: function(item) {
