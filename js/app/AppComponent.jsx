@@ -1,13 +1,13 @@
 define(
     [
         'lib/react',
-        'js/app/AppController',
+        'js/app/AppService',
         'js/app/CartComponent',
         'js/app/Grams'
     ],
     function(
         React,
-        AppController,
+        AppService,
         CartComponent,
         Grams
     ) {
@@ -20,17 +20,6 @@ define(
                 }
 
                 return state;
-            },
-
-            componentWillMount: function() {
-                // dispatcher listeners here
-
-                // load the controller
-                this.controller = new AppController(this);
-            },
-
-            componentWillUnmount: function() {
-                // stop listening for htings
             },
 
             _addOrRemoveCartItem: function(data) {
@@ -59,6 +48,19 @@ define(
 
             },
 
+            _getGrams: function(e) {
+                e.preventDefault();
+
+                var query = this.refs.gramQuery.getDOMNode().value;
+
+                // sorry i have to do this, i would have used a Promise, but don't want to require the polyfill
+                var self = this;
+
+                AppService.getGramsByQuery(query, function (resultsObject) {
+                    self.setState({gramItems: resultsObject.gramItems})
+                });
+            },
+
             render: function() {
                 return (
                     <div className="container">
@@ -66,11 +68,11 @@ define(
                             <div className="col-xs-12 text-center">
                                 <h1>React-A-Gram Cart</h1>
                                 <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
-                                <form className="form-inline" onSubmit={this.getGrams}>
+                                <form className="form-inline" onSubmit={this._getGrams}>
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="searchQuery" placeholder="cows" ref="gramQuery" />
                                     </div>
-                                    <button type="submit" className="btn btn-default" onClick={this.getGrams}>Do the thing!</button>
+                                    <button type="submit" className="btn btn-default">Do the thing!</button>
                                 </form>
                             </div>
                         </div>
@@ -82,13 +84,7 @@ define(
                 );
             },
 
-            getGrams: function(e) {
-                e.preventDefault();
 
-                var query = this.refs.gramQuery.getDOMNode().value;
-
-                this.controller.getGramsByQuery(query);
-            }
 
         });
 

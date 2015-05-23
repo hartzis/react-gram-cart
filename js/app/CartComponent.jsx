@@ -3,8 +3,7 @@ define(
         'lib/react'
     ],
     function(
-        React,
-        Dispatcher
+        React
     ) {
 
         var cx = React.addons.classSet;
@@ -22,40 +21,44 @@ define(
                 }
             },
 
-            componentWillMount: function() {
-                // dispatcher listeners here
+            _showCart: function() {
+                this.setState({show: !this.state.show});
             },
 
-            componentWillUnmount: function() {
-                // stop listening for htings
+            _remove: function(item) {
+                // console.log('remove-', item);
+                this.props.onRemove(item);
             },
 
             render: function() {
+
+                var $renderedCartItems = this.props.cartItems.map(function(item) {
+                    var classes = cx({
+                        'panel': true,
+                        'panel-primary': true
+                    });
+                    return (
+                        <div className="col-xs-12 col-sm-4" key={item.link}>
+                            <div className={classes} onClick={this._remove.bind(this, item)}>
+                                <img className="gram" src={item.media.m} />
+                            </div>
+                        </div>
+                    )
+                }, this)
+
                 return (
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="row">
                                 <div className={cx({'col-xs-12': true, 'text-center': true, 'well': true, 'hidden': !this.state.show})}>
                                     <h5>-klart-</h5>
-                                    {this.props.cartItems.map(function(item) {
-                                            var classes = cx({
-                                                'panel': true,
-                                                'panel-primary': true
-                                            });
-                                            return (
-                                                <div className="col-xs-12 col-sm-4" key={item.link}>
-                                                    <div className={classes} onClick={this.remove.bind(this, item)}>
-                                                        <img className="gram" src={item.media.m} />
-                                                    </div>
-                                                </div>
-                                            )
-                                        }.bind(this))}
+                                    {$renderedCartItems}
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 text-center">
                                     <hr></hr>
-                                    <button className="btn btn-primary" onClick={this.showCart}>
+                                    <button className="btn btn-primary" onClick={this._showCart}>
                                         {this.state.show ? 'Hide' : 'Show'} klart ({this.props.cartItems.length})
                                     </button>
                                 </div>
@@ -63,15 +66,6 @@ define(
                         </div>
                     </div>
                 )
-            },
-
-            showCart: function() {
-                this.setState({show: !this.state.show});
-            },
-
-            remove: function(item) {
-                // console.log('remove-', item);
-                this.props.onRemove(item);
             }
         });
 

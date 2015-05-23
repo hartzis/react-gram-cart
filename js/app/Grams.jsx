@@ -16,29 +16,21 @@ define(
                 onSelect: React.PropTypes.func.isRequired
             },
 
-            componentWillMount: function() {
-                // dispatcher listeners here
+            _select: function(gram) {
+              this.props.onSelect(gram);
             },
 
-            componentWillUnmount: function() {
-                // stop listening for htings
+            _isSelected: function(item) {
+                var selectedArray = this.props.cartItems.map(function(cartItem) {
+                    return cartItem.link === item.link;
+                })
+
+                return selectedArray.length !== 0 ? selectedArray.reduce(function(a,b) {return a || b;}) : false;
+
             },
 
-            render: function() {
-
-                return (
-                    <div className="row">
-                        <div className="col-xs-12 text-center">
-                            <div className="row">
-                                {this.props.gramItems.map(this.renderGram)}
-                            </div>
-                        </div>
-                    </div>
-                )
-            },
-
-            renderGram: function(gram) {
-                var isSelected = this.isSelected(gram);
+            _renderGram: function(gram) {
+                var isSelected = this._isSelected(gram);
                 var classes = cx({
                     'panel': true,
                     'panel-primary': isSelected,
@@ -53,18 +45,21 @@ define(
                 )
             },
 
-            _select: function(gram) {
-              this.props.onSelect(gram);
-            },
+            render: function() {
 
-            isSelected: function(item) {
-                var selectedArray = this.props.cartItems.map(function(cartItem) {
-                    return cartItem.link === item.link;
-                })
+                var $renderedGrams = this.props.gramItems.map(this.renderGram);
 
-                return selectedArray.length !== 0 ? selectedArray.reduce(function(a,b) {return a || b;}) : false;
-
+                return (
+                    <div className="row">
+                        <div className="col-xs-12 text-center">
+                            <div className="row">
+                                {$renderedGrams}
+                            </div>
+                        </div>
+                    </div>
+                )
             }
+
         });
 
         return Grams;
