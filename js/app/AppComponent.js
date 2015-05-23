@@ -67,6 +67,9 @@ define(
                         React.createElement("div", {className: "row"}, 
                             React.createElement("div", {className: "col-xs-12 text-center"}, 
                                 React.createElement("h1", null, "React-A-Gram Cart"), 
+                                React.createElement("h4", null, "By: ", 
+                                    React.createElement("a", {href: "http://www.hartzis.me", target: "_blank"}, "@Hartzis")
+                                ), 
                                 React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for picutures by query"), 
                                 React.createElement("form", {className: "form-inline", onSubmit: this._getGrams}, 
                                     React.createElement("div", {className: "form-group"}, 

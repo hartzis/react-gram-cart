@@ -47,7 +47,7 @@ define(
 
             render: function() {
 
-                var $renderedGrams = this.props.gramItems.map(this.renderGram);
+                var $renderedGrams = this.props.gramItems.map(this._renderGram);
 
                 return (
                     React.createElement("div", {className: "row"}, 

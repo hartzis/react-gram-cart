@@ -67,6 +67,9 @@ define(
                         <div className="row">
                             <div className="col-xs-12 text-center">
                                 <h1>React-A-Gram Cart</h1>
+                                <h4>By:&nbsp;
+                                    <a href="http://www.hartzis.me" target="_blank">@Hartzis</a>
+                                </h4>
                                 <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
                                 <form className="form-inline" onSubmit={this._getGrams}>
                                     <div className="form-group">
