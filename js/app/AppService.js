@@ -5,8 +5,6 @@ define(
 
         AppService.getGramsByQuery = function(query, passedInCallback) {
 
-            var view = this.view;
-
             // i realize now that i thought i was going to use instagram but i am now using flickr
 
             // setup query
