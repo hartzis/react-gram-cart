@@ -70,7 +70,7 @@ define(
                                 React.createElement("h4", null, "By: ", 
                                     React.createElement("a", {href: "http://www.hartzis.me", target: "_blank"}, "@Hartzis")
                                 ), 
-                                React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for picutures by query"), 
+                                React.createElement("h5", null, "Search ", React.createElement("del", null, "instagram"), " Flickr for pictures by query"),
                                 React.createElement("form", {className: "form-inline", onSubmit: this._getGrams}, 
                                     React.createElement("div", {className: "form-group"}, 
                                         React.createElement("input", {type: "text", className: "form-control", id: "searchQuery", placeholder: "cows", ref: "gramQuery"})
