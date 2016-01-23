@@ -70,7 +70,7 @@ define(
                                 <h4>By:&nbsp;
                                     <a href="http://www.hartzis.me" target="_blank">@Hartzis</a>
                                 </h4>
-                                <h5>Search <del>instagram</del> Flickr for picutures by query</h5>
+                                <h5>Search <del>instagram</del> Flickr for pictures by query</h5>
                                 <form className="form-inline" onSubmit={this._getGrams}>
                                     <div className="form-group">
                                         <input type="text" className="form-control" id="searchQuery" placeholder="cows" ref="gramQuery" />
